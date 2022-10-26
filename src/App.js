@@ -40,18 +40,18 @@ const App = () => {
   const checkForWinner = newSquares => {
 
     for (let i = 0; i < winningPositions.length; i++) {
+
       const [a, b, c] = winningPositions[i];
 
       if (newSquares[a] && newSquares[a] === newSquares[b] && newSquares[a] === newSquares[c]) {
         endGame(newSquares[a], winningPositions[i]);
         return;
       }
-
-
-      if (!newSquares.includes(null)) {
-        endGame(null, Array.from(Array(10).keys()));
-        return;
-      }
+    }
+    
+    if (!newSquares.includes(null)) {
+      endGame(null, Array.from(Array(10).keys()));
+      return;
     }
 
     setTurn(turn === 'X' ? 'O' : 'X');
@@ -84,7 +84,7 @@ const App = () => {
     <div className="container">
       <Board winningSquares={winningSquares} turn={turn} squares={squares} onClick={handleClick} />
       <ScoreBoard scoreO={score.O} scoreX={score.X} />
-      <ResetButton onClick={resetGame}/>
+      <ResetButton onClick={resetGame} />
     </div>
   );
 }
